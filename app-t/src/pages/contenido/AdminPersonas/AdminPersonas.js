@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export function AdminPersonas() {
   const [personas, setPersonas] = useState([]);
+
+ 
+  const navigate = useNavigate();
 
   const consultarPersonas = async () => {
     const consultar = await Axios.get("/personas");
@@ -63,7 +66,11 @@ export function AdminPersonas() {
                     <td>{persona.sexo}</td>
                     <td>{persona.telefono}</td>
                     <td>
-                      <button type="button" class="btn btn-success">
+                      <button 
+                      type="button" 
+                      class="btn btn-success"
+                      onClick={() => navigate(`/formpersona/${persona._id}`)}
+                      >
                         Editar
                       </button>
                     </td>

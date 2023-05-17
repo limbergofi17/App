@@ -4,7 +4,7 @@ const mongoose=require("mongoose");
 const Personas=mongoose.Schema({
     curp:{
         type:String,
-        unique:true
+        
     },
     nombre: String,
     apellidos: String,

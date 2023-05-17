@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export function FormServicios() {
 
-  const variables={  
+  const variables={
+    _id:"",  
     nombre:"",
     apellidos:"",
     sexo:"",
@@ -12,6 +13,8 @@ export function FormServicios() {
   }
 
   const [programes, setProgrames] = useState(variables);
+  const params = useParams();
+  const navigate = useNavigate();
 
   const onChange=(e)=>{
     const {name,value}=e.target;
@@ -27,10 +30,19 @@ export function FormServicios() {
    console.log(programes);
   }
 
+  const consultarServicio = async (id)=>{
+    const buscarUno=await Axios.get("/programe/"+id);
+    setProgrames(buscarUno.data)
+  }
+
   const Enviar=(e)=>{
     e.preventDefault();
     GuardarDatos();
   }
+
+  useEffect(()=>{
+    consultarServicio(params._id);
+  },[params.id])
   return (
     <div className="container-fluid p-3">
       <div class="card">

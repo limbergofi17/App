@@ -1,3 +1,4 @@
+const { model } = require("mongoose");
 const Personas=require("../models/persona.model");
 
  function createPersonas(req,res){
@@ -22,6 +23,22 @@ function getPersonas(req,res){
     })
 }
 
+function getUnaPersona(req, res) {
+    const personaId = req.params.id; // Obtén el ID de la persona de la solicitud
+
+    Personas.findById(personaId, (error, persona) => {
+        if (error) {
+            res.status(500).send({ msg: "No se pudo encontrar la persona" });
+        } else {
+            if (persona) {
+                res.status(200).send(persona);
+            } else {
+                res.status(404).send({ msg: "La persona no existe" });
+            }
+        }
+    });
+}
+
  function deletePersona(req,res){
     const {id}=req.params;
 
@@ -33,6 +50,7 @@ function getPersonas(req,res){
         }
     })
 }
+
 
 function updatePersonas(req,res){
    const {id}=req.params;
@@ -51,6 +69,7 @@ function updatePersonas(req,res){
 module.exports={
     createPersonas,
     getPersonas,
+    getUnaPersona,
     deletePersona,
     updatePersonas
 }

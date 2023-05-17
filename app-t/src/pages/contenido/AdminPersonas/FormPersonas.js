@@ -1,37 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function FormPersonas() {
 
   const variables={
-    
+    _id:"",
     curp:"",
     nombre:"",
     apellidos:"",
+    fechana:"",
     sexo:"",
-    telefono:""
+    telefono:"",
+    email:""
   }
 
   const [personas, setPersonas] = useState(variables);
+  const params = useParams();
+  const navigate = useNavigate();
+
 
   const onChange=(e)=>{
     const {name,value}=e.target;
     setPersonas({...personas,[name]:value})
   }
 
-  const GuardarDatos=async()=>{
+  const GuardarDatos=async(e)=>{
     //const formulario=document.getElementById("personales");
     //const formData=new FormData(formulario);
-    await Axios.post('/persona',personas).then(()=>{
+    await Axios.post('/guardarPersona',personas).then(()=>{
       console.log("Registros guardados")
     })
-   console.log(personas);
+    console.log(personas);  
   }
+
+  const consultarUnaPersona = async (id) =>{
+    const buscarUno = await Axios.get("/unaPersona/" + id);
+    setPersonas(buscarUno.data);
+  }
+
+  const actualizarPersonas = async () =>{
+    await Axios.put(`/unPersonas/${params.id}`).then(()=>{
+      console.log("Se actualizo los datos")
+    });
+    navigate("/")
+  }
+
 
   const Enviar=(e)=>{
     e.preventDefault();
-    GuardarDatos();
-  }
+    if(personas._id===""){
+      GuardarDatos();
+    }else{
+      actualizarPersonas();
+    }
+  };
+
+  useEffect(()=>{
+    consultarUnaPersona(params.id);
+  }, [params.id])
+
   return (
     <div className="container-fluid p-3">
       <div class="card">
@@ -44,8 +72,8 @@ export function FormPersonas() {
               </label>
               <div class="col-sm-10">
                 <input
+                type="text"
                 name="curp"
-                  type="text"
                   class="form-control"
                   id="curp"
                   placeholder="Ingresa la matricula"
@@ -86,22 +114,7 @@ export function FormPersonas() {
                 />
               </div>
             </div>
-            <div class="mb-3 row">
-              <label for="telefono" class="col-sm-2 col-form-label">
-                Teléfono
-              </label>
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="sexo"
-                  id="sexo"
-                  placeholder="Ingresa tu numero de telefono"
-                  value={personas.sexo}
-                  onChange={onChange}
-                />                        
-            </div>
-            </div>
+            
             
             <div class="mb-3 row">
               <label for="telefono" class="col-sm-2 col-form-label">
