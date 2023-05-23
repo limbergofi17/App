@@ -28,6 +28,7 @@ export function Rutas() {
     <Route path='/tipos' element={loadLayouts(Layout, Tipos)}/>
 
     <Route path='/contratar' element={loadLayouts(Layout, ContratarServi)}/>
+    <Route path='/contratar/:id' element={loadLayouts(Layout, ContratarServi)}/>
 
     <Route path='/servocen' element={loadLayouts(Layout, Servoci)}/>
     

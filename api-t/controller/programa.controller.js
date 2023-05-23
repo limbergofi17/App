@@ -22,6 +22,18 @@ function getProgramas(req,res){
     })
 }
 
+function getUnProgramas(req,res){
+    const programaId = req.params.id;
+
+    Programas.findById(programaId, (error, programasStored)=>{
+        if(error){
+            res.status(500).send({msg:"No hay datos que consultar"})
+        }else{
+            res.status(200).send(programasStored)
+        }
+    })
+}
+
  function deletePrograma(req,res){
     const {id}=req.params;
 
@@ -50,6 +62,7 @@ function updateProgramas(req,res){
 
 module.exports={
     createProgramas,
+    getUnProgramas,
     getProgramas,
     deletePrograma,
     updateProgramas

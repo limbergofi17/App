@@ -5,8 +5,9 @@ const api=express.Router();
 
 api.post("/programa",ProgramaController.createProgramas);
 api.get("/programas",ProgramaController.getProgramas);
+api.get("/unProgramas/:id",ProgramaController.getUnProgramas);
 api.delete("/programa/:id",ProgramaController.deletePrograma);
-api.patch("/programa/:id",ProgramaController.updateProgramas);
+api.put("/programa/:id",ProgramaController.updateProgramas);
 
 
 

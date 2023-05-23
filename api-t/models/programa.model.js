@@ -5,6 +5,7 @@ const Programas=mongoose.Schema({
     nombre: String,
     apellidos: String,
     sexo: String,
+    fecha: Date,
     telefono: Number,
     created_at:Date
 })

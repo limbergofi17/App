@@ -6,12 +6,12 @@ const Personas=mongoose.Schema({
         type:String,
         
     },
-    nombre: String,
-    apellidos: String,
-    fechana: Date,
-    sexo: String,
-    telefono: Number,
-    email:String,
+    nombre: {type:String},
+    apellidos: {type:String},
+    fechana: {type:Date},
+    sexo: {type:String},
+    telefono: {type:Number},
+    email:{type:String},
     created_at:Date
 })
 

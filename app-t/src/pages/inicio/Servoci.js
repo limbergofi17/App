@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Axios from "../../services/Axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function Servoci() {
   const [programas, setProgramas] = useState([]);
+
+  const navigate = useNavigate();
+
   const consultarProgramas = async () => {
     const consultar = await Axios.get("/programas");
     console.log(consultar.data);
@@ -67,6 +70,7 @@ export function Servoci() {
                           <p class="card-text">
                             <small class="text-muted">{programa.sexo}</small>
                           </p>
+                          <p class="card-text">Fecha de reserva: {programa.fecha}</p>
                           </div>
                         </div>
                       </div>
@@ -78,7 +82,11 @@ export function Servoci() {
 
             <div class="col-md-8">
               <td>
-                <button type="button" class="btn btn-warning">
+                <button 
+                type="button" 
+                class="btn btn-warning"
+                onClick={() => navigate(`/contratar/${programa._id}`)}
+                >
                   Editar
                 </button>
               </td>

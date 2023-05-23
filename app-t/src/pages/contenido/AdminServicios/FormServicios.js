@@ -21,28 +21,50 @@ export function FormServicios() {
     setProgrames({...programes,[name]:value})
   }
 
-  const GuardarDatos=async()=>{
+  const GuardarDatos = async(e)=>{
     //const formulario=document.getElementById("personales");
     //const formData=new FormData(formulario);
-    await Axios.post('/programe',programes).then(()=>{
+    await Axios.post('/programe',{
+    nombre:programes.nombre,
+    apellidos:programes.apellidos,
+    sexo:programes.sexo,
+    telefono:programes.telefono
+    }).then(()=>{
       console.log("Registros guardados")
     })
    console.log(programes);
   }
 
-  const consultarServicio = async (id)=>{
-    const buscarUno=await Axios.get("/programe/"+id);
-    setProgrames(buscarUno.data)
-  }
+  
+  const consultarUnServicio = async (id) => {
+    const buscarUno = await Axios.get("/unProgrames/" + id);
+    setProgrames(buscarUno.data);
+  };
+
+
+
+  const actualizarServicio = async () =>{
+    await Axios.put(`/programe/${params.id}`, programes).then(()=>{
+      console.log("Se actualizaron los datos")
+    });
+    navigate("/admoservi")
+  };
+
 
   const Enviar=(e)=>{
     e.preventDefault();
-    GuardarDatos();
-  }
+    if (programes._id === ""){
+      GuardarDatos();
+    }else{
+      actualizarServicio();
+    }
+  };
 
   useEffect(()=>{
-    consultarServicio(params._id);
-  },[params.id])
+    consultarUnServicio(params.id);
+  },[params.id]);
+
+
   return (
     <div className="container-fluid p-3">
       <div class="card">

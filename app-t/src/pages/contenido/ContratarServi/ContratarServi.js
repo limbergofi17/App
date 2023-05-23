@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 export function ContratarServi() {
   const variables = {
+    _id:"",
     nombre: "",
     apellidos: "",
     sexo: "",
     telefono: "",
+    fecha:""
   };
 
   const [programas, setProgramas] = useState(variables);
+  const params = useParams();
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -20,16 +24,42 @@ export function ContratarServi() {
   const GuardarDatos = async () => {
     //const formulario=document.getElementById("personales");
     //const formData=new FormData(formulario);
-    await Axios.post("/programa", programas).then(() => {
+    await Axios.post("/programa", {
+      nombre: programas.nombre,
+      apellidos: programas.apellidos,
+      sexo: programas.sexo,
+      telefono: programas.telefono,
+      fecha:programas.fecha
+    }).then(() => {
       console.log("Registros guardados");
     });
     console.log(programas);
   };
 
+  const consultarUnPrograma = async (id) =>{
+    const buscarUno = await  Axios.get("/unProgramas/" + id);
+    setProgramas(buscarUno.data);
+  }
+
+  const actualizarPrograma = async () =>{
+    await Axios.put(`/programa/${params.id}`, programas).then(()=>{
+      console.log("Se actualizaron los datos")
+    });
+    navigate("/servocen")
+  }
+
   const Enviar = (e) => {
     e.preventDefault();
-    GuardarDatos();
+    if (programas._id === "") {
+      GuardarDatos();
+    } else {
+      actualizarPrograma();
+    }
   };
+
+  useEffect(()=>{
+    consultarUnPrograma(params.id);
+  }, [params.id]);
   return (
     <div className="container-fluid p-3">
       <div class="card">
@@ -68,45 +98,22 @@ export function ContratarServi() {
                 />
               </div>
             </div>
-            <div class="mb-3 row">
-              <label for="sexo" class="col-sm-2 col-form-label">
-                Dia
-              </label>
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="sexo"
-                  id="sexo"
-                  placeholder="Selecciona el dia de tu cita"
-                  value={programas.sexo}
-                  onChange={onChange}
-                />
-              </div>
-            </div>
+            
             <div class="mb-3 row">
               <label for="telefono" class="col-sm-2 col-form-label">
-                Mes
+                Fecha de reserva
               </label>
               <div class="col-sm-10">
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
-                  name="telefono"
+                  name="fecha"
                   id="telefono"
                   placeholder="Seleciona el mes de tu cita"
-                  value={programas.telefono}
+                  value={programas.fecha}
                   onChange={onChange}
                 />
 
-                  <form action="#" method="post" onsubmit="submitForm(event)" />
-                  <label for="fecha-hora">Fecha y Hora de Reserva:</label>
-                  <input
-                    type="datetime-local"
-                    id="fecha-hora"
-                    name="fecha-hora"
-                    required
-                  />
                 </div>
               </div>
             
