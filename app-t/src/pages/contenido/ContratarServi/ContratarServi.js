@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export function ContratarServi() {
   const variables = {
@@ -31,9 +32,9 @@ export function ContratarServi() {
       telefono: programas.telefono,
       fecha:programas.fecha
     }).then(() => {
-      console.log("Registros guardados");
+      toast.success('Registros Guardados!');
     });
-    console.log(programas);
+    navigate("/")
   };
 
   const consultarUnPrograma = async (id) =>{
@@ -43,7 +44,7 @@ export function ContratarServi() {
 
   const actualizarPrograma = async () =>{
     await Axios.put(`/programa/${params.id}`, programas).then(()=>{
-      console.log("Se actualizaron los datos")
+      toast.success('Se actualizarón los datos!')
     });
     navigate("/servocen")
   }

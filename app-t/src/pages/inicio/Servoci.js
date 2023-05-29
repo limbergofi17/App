@@ -41,11 +41,7 @@ export function Servoci() {
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{programa.nombre}</h5>
-                    
-                    <div
-                      class="accordion accordion-flush"
-                      id="/"
-                    >
+                    <div class="accordion accordion-flush" id="/">
                       <div class="accordion-item">
                         <h2 class="accordion-header">
                           <button
@@ -64,13 +60,15 @@ export function Servoci() {
                           class="accordion-collapse collapse"
                           data-bs-parent="#accordionFlushExample"
                         >
-                          <div class="accordion-body">$ 
-                            {programa.apellidos} pesos
-                          <p class="card-text">{programa.telefono}</p>
-                          <p class="card-text">
-                            <small class="text-muted">{programa.sexo}</small>
-                          </p>
-                          <p class="card-text">Fecha de reserva: {programa.fecha}</p>
+                          <div class="accordion-body">
+                            ${programa.apellidos} pesos
+                            <p class="card-text">{programa.telefono}</p>
+                            <p class="card-text">
+                              <small class="text-muted">{programa.sexo}</small>
+                            </p>
+                            <p class="card-text">
+                              Fecha de reserva: {programa.fecha}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -79,13 +77,13 @@ export function Servoci() {
                 </div>
               </div>
             </div>
-
+            <center>
             <div class="col-md-8">
               <td>
-                <button 
-                type="button" 
-                class="btn btn-warning"
-                onClick={() => navigate(`/contratar/${programa._id}`)}
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  onClick={() => navigate(`/contratar/${programa._id}`)}
                 >
                   Editar
                 </button>
@@ -100,6 +98,7 @@ export function Servoci() {
                 </button>
               </td>
             </div>
+            </center>
           </div>
         );
       })}

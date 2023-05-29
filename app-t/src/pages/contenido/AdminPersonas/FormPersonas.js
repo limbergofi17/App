@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export function FormPersonas() {
   const variables = {
@@ -35,9 +36,9 @@ export function FormPersonas() {
       telefono: personas.telefono,
       email: personas.email
     }).then(() => {
-      console.log("Registros guardados");
+      toast.success('Registros Guardados!');
     });
-    console.log(personas);
+    navigate("/persona");
   };
 
   const consultarUnaPersona = async (id) => {
@@ -46,10 +47,10 @@ export function FormPersonas() {
   };
 
   const actualizarPersonas = async () => {
-    await Axios.put(`/unPersonas/${params.id}`, variables).then(()=>{
-      console.log("Se actualizo los datos");
+    await Axios.put(`/unPersonas/${params.id}`, personas).then(()=>{
+      toast.success("Se actualizaron los datos");
     });
-    navigate("/");
+    navigate("/persona");
   };
 
   const Enviar = (e) => {

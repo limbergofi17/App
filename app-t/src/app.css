@@ -6,7 +6,10 @@
 
   *{
     font-family: 'Quicksand', sans-serif;
+    
   }
+
+
 
   /* Efectos de las imagen que se agranda */
 .efecto:hover .img-fluid {

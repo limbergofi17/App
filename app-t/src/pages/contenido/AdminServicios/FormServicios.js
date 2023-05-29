@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../../services/Axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export function FormServicios() {
 
@@ -30,9 +31,9 @@ export function FormServicios() {
     sexo:programes.sexo,
     telefono:programes.telefono
     }).then(()=>{
-      console.log("Registros guardados")
+      toast.success('Registros Guardados!');
     })
-   console.log(programes);
+    navigate("/admoservi");
   }
 
   
@@ -45,7 +46,7 @@ export function FormServicios() {
 
   const actualizarServicio = async () =>{
     await Axios.put(`/programe/${params.id}`, programes).then(()=>{
-      console.log("Se actualizaron los datos")
+      toast.success('Registros Actualizados!');
     });
     navigate("/admoservi")
   };
