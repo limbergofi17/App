@@ -1,7 +1,7 @@
 import React from 'react'
 import {Routes,Route} from "react-router-dom";
 import {Layout} from "../layouts";
-import { Footer,Home,FormPersonas,AdminPersonas,FormServicios,ContratarServi,Servoci,Tipos,AdminServicios, Prueba } from '../pages';
+import { Footer,Home,FormPersonas,AdminPersonas,FormServicios,ContratarServi,Servoci,Tipos,AdminServicios, Prueba, NotFound } from '../pages';
 
 
 export function Rutas() {
@@ -14,8 +14,9 @@ export function Rutas() {
     }
   return (
    <Routes>
+
     <Route path='/' element={loadLayouts(Layout, Home)}/>
-    
+    <Route path='*' element={loadLayouts(Layout, NotFound)}/>
     <Route path='/persona' element={loadLayouts(Layout, AdminPersonas)}/>
     <Route path='/formpersona' element={loadLayouts(Layout, FormPersonas)}/>
     <Route path='/formpersona/:id' element={loadLayouts(Layout, FormPersonas)}/>

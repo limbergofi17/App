@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function AppAlumno() {
   return (
-   <BrowserRouter className="body">
+   <BrowserRouter>
     <Rutas/>
     <Toaster />
    </BrowserRouter>

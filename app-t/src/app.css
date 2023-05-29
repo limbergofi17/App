@@ -4,9 +4,14 @@
     filter: blur(1px);
   } */
 
-  *{
+  body{
     font-family: 'Quicksand', sans-serif;
-    
+    background-image:url("https://www.urbanbarbershop.es/wp-content/uploads/imagen-principal-barberia-granada-centro-urbanbarbershop.jpg");
+    backdrop-filter: blur(6px);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
   }
 
 
@@ -173,3 +178,103 @@
   font-size: 24px;
 }
 
+/* Para efectos del 404 */
+
+.area{
+  
+  
+  text-align:center;
+  font-size:6.5em;
+  color:#fff;
+  letter-spacing: -7px;
+  font-weight:700;
+  text-transform:uppercase;
+  animation:blur .75s ease-out infinite;
+  text-shadow:0px 0px 5px #fff,
+      0px 0px 7px #fff;
+}
+
+@keyframes blur{
+  from{
+      text-shadow:0px 0px 10px #fff,
+      0px 0px 10px #fff, 
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 25px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #fff,
+      0px 0px 50px #7B96B8,
+      0px 0px 150px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px 10px 100px #7B96B8,
+      0px -10px 100px #7B96B8,
+      0px -10px 100px #7B96B8;}
+}
+
+/* Fantasmita 404 */
+.container1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -64.5px;
+  margin-top: -85.5px;
+}
+
+.ghost {
+  animation: float 3s ease-out infinite;
+}
+
+@keyframes float {
+  50% {
+     transform: translate(0, 20px);
+  }
+}
+.shadowFrame {
+  width: 130px;
+  margin-top: 15px;
+}
+.shadow {
+  animation: shrink 3s ease-out infinite;
+  transform-origin: center center;
+}
+.shadow .ellipse {
+  transform-origin: center center;
+}
+
+@keyframes shrink {
+  0% {
+    width: 90%;
+    margin: 0 5%;
+  }
+  50% {
+    width: 60%;
+    margin: 0 18%;
+  }
+  100% {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
+
+/* para navbar */
+
+.navbar{
+  color: transparent;
+  background: linear-gradient(217deg, #C70000, #FFFFFF, #0000FF);
+  animation: color 3s  infinite;
+    background-size: 500%;
+}
+@keyframes color {
+  from {
+      background-position: 0% 50%;
+  }
+
+  to {
+      background-position: 100% 50%;
+  }
+}

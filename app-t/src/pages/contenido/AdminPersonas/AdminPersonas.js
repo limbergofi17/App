@@ -29,7 +29,7 @@ export function AdminPersonas() {
 
   return (
     <div className="container-fluid">
-      <div className="text-center">
+      <div className="text-center text-success">
         <h1>Administración de personas</h1>
       </div>
       <center>
