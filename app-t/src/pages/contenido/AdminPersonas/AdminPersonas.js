@@ -3,6 +3,7 @@ import Axios from "../../../services/Axios";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+
 export function AdminPersonas() {
   const [personas, setPersonas] = useState([]);
 
@@ -28,21 +29,21 @@ export function AdminPersonas() {
 
   return (
     <div className="container-fluid">
-      <div>
+      <div className="text-center">
         <h1>Administración de personas</h1>
       </div>
-      <div class="container text-center">
-        <div class="row row-cols-4">
-          <div class="col-md-3">
+      <center>
             <button type="button" class="btn btn-info">
               <Link class="dropdown-item" to="/formpersona">
                 Agregar personas...
               </Link>
             </button>
-          </div>
-        </div>
+      </center>
+      <br/>
+      <div class="container text-center">
+       
         <div class="row row-cols-12">
-          <table class="table">
+          <table class="table table-bordered border-primary table-dark table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>

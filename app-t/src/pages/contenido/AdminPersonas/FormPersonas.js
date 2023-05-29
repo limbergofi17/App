@@ -11,7 +11,7 @@ export function FormPersonas() {
     fechana: "",
     sexo: "",
     telefono: "",
-    email: "",
+    email: ""
   };
 
   const [personas, setPersonas] = useState(variables);
@@ -21,7 +21,7 @@ export function FormPersonas() {
   const onChange = (e) => {
     const { name, value } = e.target;
     setPersonas({...personas, [name]: value });
-  };
+  }
 
   const GuardarDatos = async (e) => {
     //const formulario=document.getElementById("personales");
@@ -33,7 +33,7 @@ export function FormPersonas() {
       fechana: personas.fechana,
       sexo: personas.sexo,
       telefono: personas.telefono,
-      email: personas.email,
+      email: personas.email
     }).then(() => {
       console.log("Registros guardados");
     });
@@ -46,7 +46,7 @@ export function FormPersonas() {
   };
 
   const actualizarPersonas = async () => {
-    await Axios.put(`/unPersonas/${params.id}`).then(() => {
+    await Axios.put(`/unPersonas/${params.id}`, variables).then(()=>{
       console.log("Se actualizo los datos");
     });
     navigate("/");
@@ -61,7 +61,7 @@ export function FormPersonas() {
     }
   };
 
-  useEffect(() => {
+  useEffect(()=>{
     consultarUnaPersona(params.id);
   }, [params.id]);
 
@@ -70,7 +70,7 @@ export function FormPersonas() {
       <div class="card">
         <div class="card-header">Datos personales</div>
         <div class="card-body">
-          <form class="row g-3 p-2" onSubmit={Enviar} id="personales">
+          <form class="row g-3 p-2" onSubmit={Enviar}>
             <div class="mb-3 row">
               <label for="curp" class="col-sm-2 col-form-label">
                 Curp

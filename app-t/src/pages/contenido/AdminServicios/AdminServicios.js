@@ -5,12 +5,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 export function AdminServicios() {
   const [programes, setProgrames] = useState([]);
-  
+
   const navigate = useNavigate();
 
   const consultarProgrames = async () => {
     const consultar = await Axios.get("/programes");
-    console.log(consultar.data)
+    console.log(consultar.data);
     setProgrames(consultar.data);
   };
 
@@ -27,25 +27,24 @@ export function AdminServicios() {
 
   return (
     <div className="container-fluid">
-      <div>
+      <div className="text-center">
         <h1>Administración de servicios</h1>
       </div>
+      <center>
+        <button type="button" class="btn btn-info">
+          <Link class="dropdown-item" to="/formservicio">
+            Agregar servicios...
+          </Link>
+        </button>
+      </center>
+      <br/>
       <div class="container text-center">
-        <div class="row row-cols-4">
-          <div class="col-md-3">
-            <button type="button" class="btn btn-info">
-              <Link class="dropdown-item" to="/formservicio">
-                Agregar servicios...
-              </Link>
-            </button>
-          </div>
-        </div>
         <div class="row row-cols-12">
-          <table class="table">
+          <table class="table table-bordered border-danger table-dark table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                
+
                 <th scope="col">Nombre del servicio</th>
                 <th scope="col"></th>
                 <th scope="col">Descripcion</th>
@@ -59,23 +58,27 @@ export function AdminServicios() {
                 return (
                   <tr>
                     <th scope="row">-</th>
-                   
+
                     <td>{programe.nombre}</td>
                     <td>{programe.apellidos}</td>
                     <td>{programe.sexo}</td>
                     <td>{programe.telefono}</td>
                     <td>
-                      <button 
-                      type="button" 
-                      class="btn btn-success"
-                      onClick={()=> navigate(`/formservicio/${programe._id}`)}
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onClick={() =>
+                          navigate(`/formservicio/${programe._id}`)
+                        }
                       >
                         Editar
                       </button>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-danger"
-                      onClick={()=>deleteProgrames(programe._id)}
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        onClick={() => deleteProgrames(programe._id)}
                       >
                         Delete
                       </button>
@@ -87,6 +90,7 @@ export function AdminServicios() {
           </table>
         </div>
       </div>
+      
     </div>
   );
 }
