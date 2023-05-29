@@ -125,7 +125,7 @@ export function ContratarServi() {
               </button>
             </div>
             <div class="col-12">
-              <Link class="btn btn-primary" type="submit" to="/tipos">
+              <Link class="btn btn-primary" type="submit" to="/">
                 Regresar
               </Link>
             </div>

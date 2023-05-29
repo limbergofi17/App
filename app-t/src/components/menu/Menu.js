@@ -13,7 +13,7 @@ export function Menu() {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <Link class="nav-link active" aria-current="page" to="/tipos">Home</Link>
+            <Link class="nav-link active" aria-current="page" to="/">Home</Link>
           </li>
           <li class="nav-item">
             <Link class="nav-link" aria-current="page" to="/servocen">Mis Citas</Link>
@@ -27,7 +27,7 @@ export function Menu() {
               <li><Link class="dropdown-item" to="/persona">Admin personas</Link></li>
               <li><Link class="dropdown-item" to="/admoservi">Admin servicios</Link></li>
               <li><hr class="dropdown-divider"/></li>
-              <li><Link class="dropdown-item" to="/">Usuarios</Link></li>
+              <li><Link class="dropdown-item" to="/tipos">Usuarios</Link></li>
             </ul>
           </li>
         </ul> 
